@@ -31,9 +31,9 @@
 
                 <div class="form-group d-flex">
                     {!! Form::label('type-papa', 'パパ') !!}
-                    {!! Form::radio('type', 'パパ', false,['class' => 'form-control','id' => 'type-papa']) !!}
+                    {!! Form::radio('type', '1', true,['class' => 'form-control','id' => 'type-papa']) !!}
                     {!! Form::label('type-mama', 'ママ') !!}
-                    {!! Form::radio('type', 'ママ', false,['class' => 'form-control','id' => 'type-mama']) !!}
+                    {!! Form::radio('type', '2', false,['class' => 'form-control','id' => 'type-mama']) !!}
                 </div>
 
                 <div class="form-group">
@@ -46,9 +46,10 @@
                     {!! Form::label('content', 'Content') !!}
                     {!! Form::textarea('content',null, ['class' => 'form-control']) !!}
                 </div>
-
+                
                 {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
+            
         </div>
     </div>
 @endsection
