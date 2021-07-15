@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            //type 1:パパ　2:ママ
+            $table->string('type',1);
+            //子供の誕生日
+            $table->date('birthday');
+            //自己紹介文
+            $table->text('content');
             $table->rememberToken();
             $table->timestamps();
         });
