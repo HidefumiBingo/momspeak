@@ -1,0 +1,147 @@
+
+/*会員登録画面*/
+
+
+label {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.form-type label {
+    width: 50px;
+    line-height: 2;
+    margin-right: 60px;
+}
+
+input[type='radio'] {
+    width: 20px;
+    margin-bottom: .5rem;
+    margin-right: 20px;
+}
+
+.form-sel select {
+    width: 90% !important;
+    margin-right: 20px;
+}
+
+.form-sel p {
+    font-size: 16px;
+    line-height: 2;
+}
+
+.form-control:focus {
+    border-color:rgba(248, 84, 95, .3);
+    box-shadow: 0 0 0 0.2rem rgba(248, 84, 95, .3);
+}
+
+.btn {
+    background-color: #fff;
+    color: #f8545f;
+    margin-bottom: 3rem;
+    border: 2px solid #f8545f;
+}
+
+.btn:hover {
+    background-color: #f8545f;
+    color: #fff;
+
+}
+
+.navbar {
+    background-color: #f8545f;
+}
+
+.nav-item a {
+    color: #fff;
+    margin-left: 2rem;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Comic Sans MS',sans-serif;;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
+/*welcom*/
+
+
+h1 {
+    font-family: 'Comic Sans MS',sans-serif;
+}
+
+.top {
+    background: linear-gradient(25deg, rgba(255, 0, 0, 0.4), rgba(0, 255, 0, 0.4)) ,url(../imgs/top-bg.jpg);
+    background-size: cover;
+    background-position: 30% 30%;
+    padding: 15rem;
+}
+
+.top-text {
+    font-size: 20px;
+}
+
+.use {
+    padding: 10rem 15rem;
+}
+
+.sec-tit {
+    font-size:40px;
+    font-family: 'Comic Sans MS','ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN',sans-serif;
+}
+
+.contact {
+    padding: 10rem 15rem;
+    background-color: rgba(248, 84, 95,.2);
+}
+
+/*welcom login*/
+
+.intro-img img {
+    display: block;
+    margin: 3rem auto;
+    width: 70%;
+    height: 200px;
+    border-radius: 50%;
+
+}
+
+.intro-name {
+    font-size:40px;
+    font-family: 'Comic Sans MS','ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN',sans-serif;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+/*user.show*/
+
+.card {
+    width: 30%;
+    height: auto;
+    border: none;
+}
+
+.card-body img {
+    border-radius: 50%!important;
+    margin-top: 35%;
+}
+
+.intro {
+    width: 60%;
+    padding: 2rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.nav-item a {
+    color: #333;
+    margin-left: 0;
+}
+
