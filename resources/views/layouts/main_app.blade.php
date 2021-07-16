@@ -10,6 +10,22 @@
     </head>
 
     <body>
+        
+        @if(Auth::check())
+            <nav class="navbar navbar-expand-sm">
+                {{-- トップページへのリンク --}}
+                <a class="navbar-brand" href="/">momspeak</a>
+                <div class="collapse navbar-collapse" id="nav-bar">
+                    <ul class="navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            {{-- ログアウトへのリンク --}}
+                            <li class="logout">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
+                        </ul>
+                    </ul>
+                </div>
+            </nav>
+        @endif
+
 
         <div class="container">
             {{-- エラーメッセージ --}}

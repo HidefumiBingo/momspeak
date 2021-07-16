@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main_app')
 @if(!Auth::check())
         <header>
             <nav class="navbar navbar-expand-sm navbar-dark">
@@ -97,29 +97,32 @@
 
 @section('content')
     @if (Auth::check())
-        <div class="container">
-            <div class="row">
+        <div class="container mt-5">
+            <div class="row d-flex">
                 <div class="col-4 left-contents">
-                    <div class="intro-area">
-                        <div class="intro-img">
-                            <img src="imgs/enoki.jpg">
-                            <p class="intro-name">{{ Auth::user()->name }}</p>
+                    <div class="sticky">
+                        <div class="intro-area">
+                            <div class="intro-img">
+                                <img src="imgs/enoki.jpg">
+                                <p class="intro-name">{{ Auth::user()->name }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class='link-area'>
-                        <ul class="list-group">
-                          <li class="list-group-item">{!! link_to_route('users.index', 'ユーザー一覧', [], ['class' => 'nav-link']) !!}</li>
-                          <li class="list-group-item">A second item</li>
-                          <li class="list-group-item">A third item</li>
-                          <li class="list-group-item">A fourth item</li>
-                        </ul>
+                        <div class='link-area mb-2'>
+                            <ul class="list-group">
+                              <li class="list-group-item">{!! link_to_route('users.index', 'ユーザー一覧', [], ['class' => 'nav-link']) !!}</li>
+                              <li class="list-group-item">A second item</li>
+                              <li class="list-group-item">A third item</li>
+                              <li class="list-group-item">A fourth item</li>
+                            </ul>
+                        </div>
+                    @include('posts.form')
                     </div>
                 </div>
                 <div class="col-4 center-contents">
-                  2 of 3
+                  @include('posts.posts')
                 </div>
                 <div class="col-4 right-contents">
-                  3 of 3
+
                 </div>
             </div>
         </div>

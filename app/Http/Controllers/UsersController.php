@@ -20,8 +20,15 @@ class UsersController extends Controller
     public function show($id) {
         $user = User::findOrFail($id);
         
+        //関係するモデルの件数をロード
+        $user->loadRelationshipCounts();
+        
+        //ユーザの投稿一覧を取得
+        $posts = $user->posts()->orderBy('created_at','desc')->paginate(10);
+        
         return view('users.show', [
             'user' => $user, 
+            'posts' => $posts,
         ]);
     }
 }
