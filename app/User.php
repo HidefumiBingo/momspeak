@@ -91,5 +91,17 @@ class User extends Authenticatable
         return $this->followings()->where('follow_id',$userId)->exists();
     }
     
+    //フォロー中のUserと自分の投稿に絞る
+    public function feed_posts() {
+        //(SQL: select `users.id` from `users` inner join `user_follow` on `users`.`id` = `user_follow`.`follow_id` where `user_follow`.`user_id` = 2)'
+        $userIds = $this->followings()->pluck('users.id')->toArray();
+        // 配列への追加（自分）
+        $userIds[] = $this->id;
+        
+        //where posts.user_id IN $userIds
+        //where $userIds IN posts.user_id
+        return Post::whereIn('user_id',$userIds);
+    }
+    
     
 }
