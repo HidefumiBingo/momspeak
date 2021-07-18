@@ -20,6 +20,7 @@
             </div>
         <div class="col">
             @include('users.navtabs')
+            @include('users.users')
         </div>
         </aside>
         <div class="col-6">
@@ -29,6 +30,7 @@
             @endif
             {{-- 投稿一覧 --}}
             @include('posts.posts')
+
         </div>
     </div>
 @endsection

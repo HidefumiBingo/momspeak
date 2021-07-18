@@ -104,15 +104,15 @@
                         <div class="intro-area">
                             <div class="intro-img">
                                 <img src="imgs/enoki.jpg">
-                                <p class="intro-name">{{ Auth::user()->name }}</p>
+                                <p class="intro-name">{!! link_to_route('users.userslist', Auth::user()->name, [Auth::id()], ['class' => 'nav-link']) !!}</p>
                             </div>
                         </div>
                         <div class='link-area mb-2'>
                             <ul class="list-group">
-                              <li class="list-group-item">{!! link_to_route('users.index', 'ユーザー一覧', [], ['class' => 'nav-link']) !!}</li>
-                              <li class="list-group-item">A second item</li>
-                              <li class="list-group-item">A third item</li>
-                              <li class="list-group-item">A fourth item</li>
+                              <li class="list-group-item">{!! link_to_route('users.userslist', 'ユーザー', [Auth::id()], ['class' => 'nav-link']) !!}</li>
+                              <li class="list-group-item">{!! link_to_route('users.followings', 'フォロー', [Auth::id()], ['class' => 'nav-link']) !!}</li>
+                              <li class="list-group-item">{!! link_to_route('users.followers', 'フォロワー', [Auth::id()], ['class' => 'nav-link']) !!}</li>
+                              <!--<li class="list-group-item">{!! link_to_route('users.followers', 'マッチング', [Auth::id()], ['class' => 'nav-link']) !!}</li>-->
                             </ul>
                         </div>
                     @include('posts.form')

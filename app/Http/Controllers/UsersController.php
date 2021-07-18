@@ -31,4 +31,55 @@ class UsersController extends Controller
             'posts' => $posts,
         ]);
     }
+    
+    
+    public function followings($id) {
+        $user = User::findOrFail($id);
+
+        $posts = $user->posts()->orderBy('created_at','desc')->paginate(10);
+        
+        $user->loadRelationshipCounts();
+        
+        $followings = $user->followings()->paginate(10);
+        
+        return view('users.followings',[
+            'user' => $user,
+            'users' => $followings,
+            'posts' => $posts,
+        ]);
+    }
+    
+    public function followers($id) {
+        $user = User::findOrFail($id);
+        
+        $posts = $user->posts()->orderBy('created_at','desc')->paginate(10);
+
+        
+        $user->loadRelationshipCounts();
+        
+        $followers = $user->followers()->paginate(10);
+        
+        return view('users.followers', [
+            'user' => $user,
+            'users' => $followers,
+            'posts' => $posts,
+        ]);
+    }
+    
+    public function userslist($id) {
+        $user = User::findOrFail($id);
+        
+        $posts = $user->posts()->orderBy('created_at','desc')->paginate(10);
+        
+        $user->loadRelationshipCounts();
+
+        $users = User::orderBy('id','desc')->paginate(10);
+        
+        return view('users.userslist', [
+            'user' => $user,
+            'posts' => $posts,
+            'users' => $users,
+        ]);
+
+    }
 }

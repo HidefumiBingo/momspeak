@@ -20,6 +20,7 @@
             </div>
         <div class="col">
             @include('users.navtabs')
+            @include('users.users')
         </div>
         </aside>
         <div class="col-6">
