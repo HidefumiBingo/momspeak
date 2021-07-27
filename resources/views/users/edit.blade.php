@@ -1,14 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.main_app')
 
 @section('content')
-    <div class="text-center">
-        <h1>会員登録</h1>
-    </div>
+
+    <h1 class="text-center mt-5">{{ $user->name }} の自己紹介編集ページ</h1>
 
     <div class="row">
-        <div class="col-sm-6 offset-sm-3">
+        <div class="col-6 offset-sm-3">
+            {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
 
-            {!! Form::open(['route' => 'signup.post']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'お名前') !!}
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -50,10 +49,6 @@
                             {!! Form::selectRange('birthday_month', 1,12, '',['class' => 'form-control']) !!}
                             <p>月</p>
                         </div>
-                        <div class="form-sel d-flex">
-                            {!! Form::selectRange('birthday_day', 1,31, '',['class' => 'form-control']) !!}
-                            <p>日</p>
-                        </div>
                 </div>
 
                 <div class="form-group">
@@ -61,9 +56,10 @@
                     {!! Form::textarea('content',null, ['class' => 'form-control']) !!}
                 </div>
                 
-                {!! Form::submit('会員登録する', ['class' => 'btn btn-block']) !!}
+                {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
+
             {!! Form::close() !!}
-            
         </div>
     </div>
+
 @endsection

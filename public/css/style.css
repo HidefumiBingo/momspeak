@@ -1,5 +1,52 @@
+/*==========================================================
 
-/*会員登録画面*/
+ボタン
+
+============================================================*/
+
+.btn {
+    background-color: #fff;
+    color: #f8545f;
+    margin-bottom: 3rem;
+    border: 2px solid #f8545f;
+}
+
+.btn:hover {
+    background-color: #f8545f;
+    color: #fff;
+    border: 2px solid #f8545f;
+}
+
+.btn-destroy {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.btn-good {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.good {
+    background-color: #f8545f;
+    color: #fff;
+}
+
+.good:hover {
+    background-color: #fff;
+    color: #f8545f;
+}
+
+
+/*==========================================================
+
+会員登録画面
+
+============================================================*/
 
 
 label {
@@ -34,18 +81,6 @@ input[type='radio'] {
     box-shadow: 0 0 0 0.2rem rgba(248, 84, 95, .3);
 }
 
-.btn {
-    background-color: #fff;
-    color: #f8545f;
-    margin-bottom: 3rem;
-    border: 2px solid #f8545f;
-}
-
-.btn:hover {
-    background-color: #f8545f;
-    color: #fff;
-
-}
 
 .navbar {
     background-color: #f8545f;
@@ -54,6 +89,15 @@ input[type='radio'] {
 .nav-item a {
     color: #fff;
     margin-left: 2rem;
+}
+
+.nav-pills {
+    margin-top: 1rem;
+}
+
+.nav-pills >
+.nav-item a{
+    color: #007bff;
 }
 
 .navbar-brand {
@@ -68,12 +112,11 @@ a:hover {
     text-decoration: underline;
 }
 
+/*==========================================================
 
-/*
+welcome nologin
 
-welcom
-
-*/
+============================================================*/
 
 
 h1 {
@@ -111,11 +154,11 @@ h1 {
 }
 
 
-/*
+/*==========================================================
 
-welcom login
+welcome login
 
-*/
+============================================================*/
 
 .sticky {
     position: sticky;
@@ -138,7 +181,11 @@ welcom login
     font-family: 'Comic Sans MS','ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN',sans-serif;
     text-align: center;
     margin-top: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+}
+
+.intro-birth {
+    text-align: center;
 }
 
 .form-group {
@@ -146,11 +193,11 @@ welcom login
 }
 
 
-/*
+/*==========================================================
 
 user.show
 
-*/
+============================================================*/
 
 .card {
     width: 30%;
@@ -181,11 +228,11 @@ user.show
 }
 
 
-/*
+/*==========================================================
 
 posts
 
-*/
+============================================================*/
 
 .media {
     border: 2px solid #F2F2F2;
@@ -199,11 +246,4 @@ posts
 .p-1 {
     width: 80%;
     overflow-wrap: break-word;
-}
-
-.btn-destroy {
-    display: block;
-    margin-left: auto;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
 }

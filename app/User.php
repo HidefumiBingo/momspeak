@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Carbon\Carbon;
+
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -46,7 +49,7 @@ class User extends Authenticatable
     
     //件数の取得
     public function loadRelationshipCounts() {
-        $this->loadCount(['posts','followings','followers']);
+        $this->loadCount(['posts','followings','followers','favorites']);
     }
     
     //このUserがフォロー中のUser
@@ -99,9 +102,78 @@ class User extends Authenticatable
         $userIds[] = $this->id;
         
         //where posts.user_id IN $userIds
-        //where $userIds IN posts.user_id
         return Post::whereIn('user_id',$userIds);
     }
     
     
+    //このUserがいいねしているPost
+    public function favorites() {
+        return $this->belongsToMany(Post::class,'favorites','user_id','post_id')->withTimestamps();
+    }
+    
+    //$postIdで指定したPostをいいねする
+    public function favorite($postId) {
+        $exist = $this->is_favorite($postId);
+
+        if($exist) {
+            return false;
+        } else {
+            $this->favorites()->attach($postId);
+            return true;
+        }
+    }
+    
+    //$postIdで指定したPostのいいねを外す
+    public function unfavorite($postId) {
+        $exist = $this->is_favorite($postId);
+        
+        if($exist) {
+            $this->favorites()->detach($postId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    //$postIdで指定したPostがいいねされているか確認→入っていればtrueを返す
+    public function is_favorite($postId) {
+        return $this->favorites()->where('post_id',$postId)->exists();
+    }
+    
+    
+    //このUserがコメントしているPost
+    public function comments() {
+        return $this->belongsToMany(Post::class,'comments','user_id','post_id')
+        ->withPivot('content','id')
+        ->withTimestamps();
+    }
+    
+    //$postIdで指定した投稿にコメントをする
+    public function comment($postId,$content) {
+        $this->comments()->attach($postId,$content); 
+    }
+    
+    
+    //room機能
+    // このUserが送信したMessage
+    public function send_messages() {
+        return $this->belongsToMany(User::class,'messages','send_user_id','receive_user_id')
+        ->withPivot('content','id')
+        ->withTimestamps();
+    }
+    
+    // このUserが受信したMessage
+    public function receive_messages() {
+        return $this->belongsToMany(User::class,'messages','receive_user_id','send_user_id')
+        ->withPivot('content','id')
+        ->withTimestamps();
+    }
+    
+    // $userIdで指定したUserにMessageを送信する
+    public function send_message($userId,$content) {
+        $this->send_messages()->attach($userId,$content);
+    }
+
+    
+
 }

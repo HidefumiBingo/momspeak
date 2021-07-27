@@ -14,7 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/','PostsController@index');  
+
+Route::get('/','PostsController@index')->name('posts.index');  
 
 // ユーザ登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -33,9 +34,22 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('followings','UsersController@followings')->name('users.followings');
         Route::get('followers','UsersController@followers')->name('users.followers');
         Route::get('userslist','UsersController@userslist')->name('users.userslist');
+        Route::get('favorites','UsersController@favorites')->name('users.favorites');
     });
-    Route::resource('users','UsersController',['only' => ['index','show']]);
+    Route::resource('users','UsersController',['only' => ['index','show','edit','update']]);
+
+
+    Route::group(['prefix' => 'posts/{id}'], function() {
+       Route::post('favorite','FavoritesController@store')->name('favorites.favorite');
+       Route::delete('unfavorite','FavoritesController@destroy')->name('favorites.unfavorite');
+       Route::post('comment','CommentsController@store')->name('comments.comment');
+    });
+    Route::resource('posts','PostsController',['only' => ['show','store','edit','update','destroy']]);
     
-    Route::resource('posts','PostsController',['only' => ['store','destroy']]);
+
+    Route::resource('comments','CommentsController',['only' => ['edit','update','destroy']]);
+    
+    
+    Route::resource('messages','MessagesController',['only' => ['index','store','destroy']]);
 });
 
