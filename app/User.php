@@ -155,14 +155,14 @@ class User extends Authenticatable
     
     
     //room機能
-    // このUserが送信したMessage
+    // このUserがMessageを送信したUser
     public function send_messages() {
         return $this->belongsToMany(User::class,'messages','send_user_id','receive_user_id')
         ->withPivot('content','id')
         ->withTimestamps();
     }
     
-    // このUserが受信したMessage
+    // このUserがMessageを受信したUser
     public function receive_messages() {
         return $this->belongsToMany(User::class,'messages','receive_user_id','send_user_id')
         ->withPivot('content','id')
@@ -172,6 +172,22 @@ class User extends Authenticatable
     // $userIdで指定したUserにMessageを送信する
     public function send_message($userId,$content) {
         $this->send_messages()->attach($userId,$content);
+    }
+    
+    //userIdで指定したUserと自分がマッチングしているかの確認
+    public function matching($userId) {
+        //自分がフォローしている相手か確認
+        $exist_me = $this->is_following($userId);
+        // 相手からフォローされているか確認
+        $you = User::findOrFail($userId);
+        $id = \Auth::id();
+        $exist_you = $this->followers()
+        ->where('user_id',$userId)
+        ->exists();
+        
+        if($exist_me && $exist_you) {
+            return true;
+        } 
     }
 
     

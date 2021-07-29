@@ -35,6 +35,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('followers','UsersController@followers')->name('users.followers');
         Route::get('userslist','UsersController@userslist')->name('users.userslist');
         Route::get('favorites','UsersController@favorites')->name('users.favorites');
+        //messageの保存用ルート
+        Route::post('messages','MessagesController@store')->name('messages.store');
     });
     Route::resource('users','UsersController',['only' => ['index','show','edit','update']]);
 
@@ -42,6 +44,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'posts/{id}'], function() {
        Route::post('favorite','FavoritesController@store')->name('favorites.favorite');
        Route::delete('unfavorite','FavoritesController@destroy')->name('favorites.unfavorite');
+       //commentの保存用ルート
        Route::post('comment','CommentsController@store')->name('comments.comment');
     });
     Route::resource('posts','PostsController',['only' => ['show','store','edit','update','destroy']]);
@@ -50,6 +53,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('comments','CommentsController',['only' => ['edit','update','destroy']]);
     
     
-    Route::resource('messages','MessagesController',['only' => ['index','store','destroy']]);
+    Route::resource('messages','MessagesController',['only' => ['show','destroy']]);
 });
 

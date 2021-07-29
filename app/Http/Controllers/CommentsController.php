@@ -35,6 +35,7 @@ class CommentsController extends Controller
     
     //コメントする
     public function store(Request $request,$id) {
+        dd($id);
         $content = $request->content;
         \Auth::user()->comment($id, ['content' => $content]);
         return redirect('/posts/'.$id);

@@ -35,8 +35,6 @@ class PostsController extends Controller
         $user = User::findOrFail($post->user_id);
         $comments = $post->comment_users()->orderBy('pivot_id','desc')->paginate(10);
         
-        $userId = \DB::table('comments')->where('post_id',$post->id);
-
         //生後の計算
         $birthDay = Carbon::createFromDate($user->birthday);
         $age      = $birthDay->diff(Carbon::now())->format('%y 歳 %m ヵ月');

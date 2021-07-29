@@ -121,6 +121,7 @@ class UsersController extends Controller
     
     public function userslist($id) {
         $user = User::findOrFail($id);
+        $user->loadRelationshipCounts();
         
         //生後の計算
         $birthDay = Carbon::createFromDate($user->birthday);
@@ -130,11 +131,8 @@ class UsersController extends Controller
         $posts = $user->posts()->orderBy('created_at','desc')->paginate(10);
         $favorites = $user->favorites()->paginate(10);
 
-        
-        $user->loadRelationshipCounts();
-
         $users = User::orderBy('id','desc')->paginate(10);
-        
+
         return view('users.userslist', [
             'user' => $user,
             'posts' => $posts,
