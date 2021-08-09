@@ -5,7 +5,7 @@
     <h1 class="text-center mt-5">{{ $user->name }} の自己紹介編集ページ</h1>
 
     <div class="row">
-        <div class="col-6 offset-sm-3">
+        <div class="col-12 offset-sm-3 col-sm-6">
             {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
 
                 <div class="form-group">

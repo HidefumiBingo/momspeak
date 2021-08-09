@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="row d-flex">
-        <aside class="col-6">
+        <aside class="col-12 col-sm-6">
             <div class="d-flex">
                 @include('users.card')
             </div>
-        <div class="col">
+        <div class="col d-none d-sm-block">
             {!! Form::open(['route' => ['messages.store',$user->id]]) !!}
                 <div class="form-group">
                     {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => '3']) !!}
@@ -20,9 +20,9 @@
             </div>
         </div>
         </aside>
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             @if(count($messages) > 0)
-                    <div class="container m-3">
+                    <div class="container m-sm-3">
                       <div class="chat bg-light p-4">
                 @foreach($messages as $message)
                         @if($message->send_user_id == $send_user->id)
@@ -48,6 +48,16 @@
                       </div><!-- .chat -->
                     </div><!-- .container -->
             @endif
+            
+            <div class="col d-sm-none d-block">
+                {!! Form::open(['route' => ['messages.store',$user->id]]) !!}
+                    <div class="form-group">
+                        {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => '3']) !!}
+                        {!! Form::submit('送信する', ['class' => 'btn btn-primary btn-block']) !!}
+                    </div>
+                {!! Form::close() !!}
+            </div>
+
         </div>
     </div>
 @endsection

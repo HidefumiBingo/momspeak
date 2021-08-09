@@ -135,6 +135,7 @@ h1 {
     padding: 15rem;
 }
 
+
 .top-text {
     font-size: 20px;
 }
@@ -148,11 +149,20 @@ h1 {
     font-family: 'Comic Sans MS','ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN',sans-serif;
 }
 
-.contact {
-    padding: 10rem 15rem;
-    background-color: rgba(248, 84, 95,.2);
+@media screen and (max-width: 480px) { 
+    .top {
+        padding: 2.5rem;
+    }
+    
+    .use {
+        padding: 2rem;
+    }
+    
+    .use-item {
+        margin: 0;
+        padding: 0;
+    }
 }
-
 
 /*==========================================================
 

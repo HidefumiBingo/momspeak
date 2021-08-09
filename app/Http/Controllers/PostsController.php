@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use Carbon\Carbon;
+use RakutenRws_Client;
+
 
 
 class PostsController extends Controller
@@ -18,11 +20,43 @@ class PostsController extends Controller
             $user = \Auth::user();
             $posts = $user->feed_posts()->orderBy('created_at','desc')->paginate(10);
             $favorites = $user->favorites()->paginate(10);
+            
+            //rakuten-api
+            $client = new RakutenRws_Client();
+        
+            // define("RAKUTEN_APPLICATION_ID"     , config('app.rakuten_id'));
+            //$client->setApplicationId(RAKUTEN_APPLICATION_ID);
+            $client->setApplicationId(config('app.rakuten_id'));
+            
+            $response = $client->execute('IchibaItemSearch',array(
+                'keyword' => '絵本 おすすめ',
+                'hits' => '5',
+                'imageFlag' => '1'
+            ));
+            
+            if ($response->isOk()) {
+                $items = array();
+                //配列で結果をぶち込んで行きます
+                foreach ($response as $item){
+                    //画像サイズを変えたかったのでURLを整形します
+                    $str = str_replace("_ex=128x128", "_ex=175x175", $item['mediumImageUrls'][0]['imageUrl']);
+                    $items[] = array(
+                        'itemName' => $item['itemName'],
+                        'itemPrice' => $item['itemPrice'],
+                        'itemUrl' => $item['itemUrl'],
+                        'mediumImageUrls' => $str,
+                        'siteIcon' => "../images/rakuten_logo.png",
+                    );
+                }
+            }   else {
+                    echo 'Error:'.$response->getMessage();
+            }
 
             $data = [
                 'user' => $user,
                 'posts' => $posts,
                 'favorites' => $favorites,
+                'items' => $items,
             ];
         }
         
@@ -50,6 +84,10 @@ class PostsController extends Controller
     public function edit($id) {
         $post = Post::findOrFail($id);
         
+        if(\Auth::id() != $post->user_id) {
+            return redirect('/');
+        }
+        
         return view('posts.edit', [
            'post' => $post, 
         ]);
@@ -58,6 +96,10 @@ class PostsController extends Controller
     
     public function update(Request $request, $id) {
         $post = Post::findOrFail($id);
+        
+        if(\Auth::id() != $post->user_id) {
+            return redirect('/');
+        }
         
         $post->content = $request->content;
         $post->save();

@@ -54,5 +54,9 @@ Route::group(['middleware' => ['auth']], function() {
     
     
     Route::resource('messages','MessagesController',['only' => ['show','destroy']]);
+    
+    Route::post('contacts','ContactsController@store')->name('contacts.store');
+    
+
 });
 

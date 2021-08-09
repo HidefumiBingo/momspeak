@@ -14,7 +14,6 @@
                     <ul class="navbar-nav">
                             <li class="nav-item"><a href="#top">トップ</a></li>
                             <li class="nav-item"><a href="#use">使い方</a></li>
-                            <li class="nav-item"><a href="#contact">お問い合わせ</a></li>
                     </ul>
                 </div>
             </nav>
@@ -23,7 +22,7 @@
         <section class="top text-light" id="top">
             <div class="container">
                 <div class="row">
-                    <div class="col-7 top-left">
+                    <div class="col-12 col-sm-7 top-left">
                         <h1>momspeak</h1>
                         <p class="top-text">
                             momspeakは、子育てするママやパパ達が直接会うことなく、ネット上だけで繋がるサービスです。<br>
@@ -46,36 +45,36 @@
             <h2 class="sec-tit text-center">使い方</h2>
                 <div class="row-cols-2">
                     <div class="use-items d-flex flex-wrap">
-                        <div class="use-item m-5 col">
+                        <div class="use-item m-sm-5 col">
                             <div class="card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="../imgs/icon/use1.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">投稿する</h5>
                                     <p class="card-text">近況や悩み、アドバイスといった子供に関することを投稿してみましょう！</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="use-item m-5 col">
+                        <div class="use-item m-sm-5 col">
                             <div class="card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="../imgs/icon/use2.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">お気に入り</h5>
                                     <p class="card-text">気に入った投稿をお気に入りに登録してみましょう！</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="use-item m-5 col">
+                        <div class="use-item m-sm-5 col">
                             <div class="card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="../imgs/icon/use3.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">フォロー</h5>
                                     <p class="card-text">気に入ったユーザーをフォローしてみましょう！</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="use-item m-5 col">
+                        <div class="use-item m-sm-5 col">
                             <div class="card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="../imgs/icon/use4.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">マッチング</h5>
                                     <p class="card-text">相互にフォローすることで２人だけのチャットルームでの会話ができるようになります！</p>
@@ -86,20 +85,13 @@
                 </div>
             </div>
         </section>
-        
-        <section class="contact" id="contact">
-            <div class="container">
-                <h2 class="sec-tit text-center">お問い合わせ</h2>
-            </div>
-        </section>
-
 @endif
 
 @section('content')
     @if (Auth::check())
         <div class="container mt-5">
             <div class="row d-flex">
-                <div class="col-4 left-contents">
+                <div class="col-sm-4 col-12 left-contents">
                     <div class="sticky">
                         <div class="intro-area">
                             <div class="intro-img">
@@ -116,13 +108,19 @@
                             </ul>
                         </div>
                     @include('posts.form')
+                    {!! Form::open(['route' => 'contacts.store']) !!}
+                        <div class="form-group">
+                            {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => '2']) !!}
+                            {!! Form::submit('お問合せ', ['class' => 'btn btn-primary btn-block mb-5']) !!}
+                        </div>
+                    {!! Form::close() !!}
                     </div>
                 </div>
-                <div class="col-4 center-contents">
-                  @include('posts.posts')
+                <div class="col-sm-4 col-12 center-contents mt-5">
+                    @include('posts.posts')
                 </div>
-                <div class="col-4 right-contents">
-
+                <div class="col-sm-4 col-12 right-contents">
+                    @include('web-api.index')
                 </div>
             </div>
         </div>

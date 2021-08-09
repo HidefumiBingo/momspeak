@@ -19,7 +19,7 @@
                     </p>
                     {{-- メッセージ編集ページへのリンク --}}
                     @if(Auth::id() == $user->id)
-                        {!! link_to_route('users.edit', '自己紹介文を編集', [$user->id], ['class' => 'btn btn-light']) !!}
+                        {!! link_to_route('users.edit', '編集', [$user->id], ['class' => 'btn btn-light']) !!}
                     @endif
                     @include('user_follow.follow_btn')
                 </div>

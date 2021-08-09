@@ -15,7 +15,7 @@
             <nav class="navbar navbar-expand-sm">
                 {{-- トップページへのリンク --}}
                 <a class="navbar-brand" href="/">momspeak</a>
-                <div class="collapse navbar-collapse" id="nav-bar">
+                <div class="navbar-collapse text-right" id="nav-bar">
                     <ul class="navbar-nav mr-auto"></ul>
                         <ul class="navbar-nav">
                             {{-- ログアウトへのリンク --}}
@@ -39,7 +39,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
         <!--myjquery追加-->
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
-        <!--<script src="js/myjquery.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="js/myjquery.js"></script>
     </body>
 </html>

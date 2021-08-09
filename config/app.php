@@ -227,5 +227,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    
+    //'rakuten_id' => env('1054785163601045189',false),
+    'rakuten_id' => env('RAKUTEN_APPLICATION_ID', '1054785163601045189'),
 ];

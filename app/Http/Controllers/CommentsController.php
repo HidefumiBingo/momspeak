@@ -17,6 +17,10 @@ class CommentsController extends Controller
         $comment = Comment::findOrFail($id);
         $post = Post::findOrFail($comment->post_id);
         $user = User::findOrFail($post->user_id);
+        
+        if(\Auth::id() != $comment->user_id) {
+            return redirect('/');
+        }
 
         return view('comments.edit', [
             'comment' => $comment, 
@@ -26,6 +30,11 @@ class CommentsController extends Controller
     
     public function update(Request $request, $id) {
         $comment = Comment::findOrFail($id);
+        
+        if(\Auth::id() != $comment->user_id) {
+            return redirect('/');
+        }
+
         $comment->content = $request->content;
         $comment->save();
 
@@ -35,7 +44,6 @@ class CommentsController extends Controller
     
     //コメントする
     public function store(Request $request,$id) {
-        dd($id);
         $content = $request->content;
         \Auth::user()->comment($id, ['content' => $content]);
         return redirect('/posts/'.$id);

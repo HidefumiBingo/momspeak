@@ -1,3 +1,5 @@
+    <h2>コメント一覧</h2>
+    
     @if (count($comments) > 0)
         <ul class="list-unstyled">
             @foreach ($comments as $comment)

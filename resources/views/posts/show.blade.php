@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row d-flex">
-        <aside class="col-6">
+        <aside class="col-12 col-sm-6">
             <div class="d-flex">
                 @include('users.card')
             </div>
@@ -37,7 +37,7 @@
                 </ul>
         </div>
         </aside>
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             @include('comments.form')
             @include('comments.comments')
         </div>
