@@ -1,5 +1,6 @@
-<h2 class="text-center mb-3">楽天市場【絵本】</h2>
+@if(count($items) > 0)
 
+  <h2 class="text-center mb-3">楽天市場【絵本】</h2>
     @foreach($items as $item)
         <div class="card mx-auto" style="width: 15rem;">
           <img src="{{ $item['mediumImageUrls'] }}" class="card-img-top" alt="...">
@@ -10,3 +11,7 @@
           </div>
         </div>
     @endforeach
+@else
+    <p>エラーが発生しました。<br>
+    ブラウザを再度リロードしてお試しください。</p>
+@endif

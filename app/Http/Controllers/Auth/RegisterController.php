@@ -49,12 +49,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $message = [
+            'name.required' => '名前を入力してください',  
+            'email.required' => 'メールアドレスを入力してください',  
+            'password.required' => 'パスワードを入力してください',  
+            'birthday.required' => '誕生日の日付が有効ではありません',  
+            'content.required' => '自己紹介文を入力してください',  
+        ];
+        
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required', 'string' , 'max:1'],
-        ]);
+            'birthday' => ['required','date','date_format:Y-m-d'],
+            'content' => ['required', 'string', 'max:255'],
+        ],$message);
     }
 
     /**
@@ -66,6 +76,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
             $birthday = $data['birthday_year'].'-'.$data['birthday_month'].'-'.$data['birthday_day'];
+            
+            
 
         return User::create([
             'name' => $data['name'],

@@ -8,7 +8,7 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use RakutenRws_Client;
-
+use Log;
 
 
 class PostsController extends Controller
@@ -34,8 +34,9 @@ class PostsController extends Controller
                 'imageFlag' => '1'
             ));
             
+            $items = array();
+            
             if ($response->isOk()) {
-                $items = array();
                 //配列で結果をぶち込んで行きます
                 foreach ($response as $item){
                     //画像サイズを変えたかったのでURLを整形します
@@ -50,6 +51,8 @@ class PostsController extends Controller
                 }
             }   else {
                     echo 'Error:'.$response->getMessage();
+                    // /storage/logs/laravel.logの中にログを残す
+                    Log::info('楽天APIエラー');
             }
 
             $data = [
