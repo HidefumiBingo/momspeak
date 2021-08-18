@@ -53,16 +53,21 @@ class RegisterController extends Controller
             'name.required' => '名前を入力してください',  
             'email.required' => 'メールアドレスを入力してください',  
             'password.required' => 'パスワードを入力してください',  
-            'birthday.required' => '誕生日の日付が有効ではありません',  
-            'content.required' => '自己紹介文を入力してください',  
+            'content.required' => '自己紹介文を入力してください', 
+            'birthday_date.date' => 'お誕生日の年月日が有効ではありません'
         ];
         
+        
+        return Validator::make(array_merge($data, ['birthday_date' => $data['birthday_year'].'-'.$data['birthday_month'].'-'.$data['birthday_day']]), [
+            'birthday_date' => ['required','date'],
+        ],$message);
+
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required', 'string' , 'max:1'],
-            'birthday' => ['required','date','date_format:Y-m-d'],
             'content' => ['required', 'string', 'max:255'],
         ],$message);
     }
